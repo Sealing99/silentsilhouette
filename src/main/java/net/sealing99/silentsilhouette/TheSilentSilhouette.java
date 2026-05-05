@@ -1,7 +1,10 @@
 package net.sealing99.silentsilhouette;
 
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.sealing99.silentsilhouette.block.ModBlocks;
+import net.sealing99.silentsilhouette.entity.ModEntities;
+import net.sealing99.silentsilhouette.entity.custom.SilhouetteEntity;
 import net.sealing99.silentsilhouette.item.ModItemGroups;
 import net.sealing99.silentsilhouette.item.ModItems;
 import org.slf4j.Logger;
@@ -17,5 +20,8 @@ public class TheSilentSilhouette implements ModInitializer {
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
 		ModItemGroups.registerItemGroups();
+		ModEntities.registerModEntities();
+
+		FabricDefaultAttributeRegistry.register(ModEntities.SILHOUETTE, SilhouetteEntity.createAttributes());
 	}
 }

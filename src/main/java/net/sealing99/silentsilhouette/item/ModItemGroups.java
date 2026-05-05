@@ -25,6 +25,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.RAW_PINK_GARNET_BLOCK);
                         entries.add(ModBlocks.PINK_GARNET_ORE);
                         entries.add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
+                        entries.add(ModItems.SILHOUETTE_SPAWN_EGG);
                     })
 
                     .build()
