@@ -27,7 +27,7 @@ public class ModItemGroups {
                         entries.add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
                     })
 
-                .build()
+                    .build()
     );
 
     public static void registerItemGroups() {
