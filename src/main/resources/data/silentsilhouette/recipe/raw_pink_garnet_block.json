@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "#": {
+      "item": "silentsilhouette:raw_pink_garnet"
+    }
+  },
+  "pattern": [
+      "###",
+      "###",
+      "###"
+  ],
+  "result": {
+    "id": "silentsilhouette:raw_pink_garnet_block",
+    "count": 1
+  }
+}
