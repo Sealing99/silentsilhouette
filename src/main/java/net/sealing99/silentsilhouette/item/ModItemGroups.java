@@ -13,19 +13,21 @@ import net.sealing99.silentsilhouette.block.ModBlocks;
 public class ModItemGroups {
     public static final ItemGroup SILENT_SILHOUETTE_GROUP = Registry.register(
         Registries.ITEM_GROUP,
-            Identifier.of(TheSilentSilhouette.MOD_ID, "silent_silhouette_group"),
-            FabricItemGroup.builder()
-                    .displayName(Text.translatable("itemgroup.silentsilhouette.silent_silhouette_group"))
-                    .icon(() -> new ItemStack(ModItems.SILHOUETTE_HEART))
-                    .entries((displayContext, entries) -> {
-                        entries.add(ModItems.SILHOUETTE_HEART);
-                        entries.add(ModItems.PINK_GARNET);
-                        entries.add(ModItems.RAW_PINK_GARNET);
-                        entries.add(ModBlocks.PINK_GARNET_BLOCK);
-                        entries.add(ModBlocks.RAW_PINK_GARNET_BLOCK);
-                    })
+        Identifier.of(TheSilentSilhouette.MOD_ID, "silent_silhouette_group"),
+        FabricItemGroup.builder()
+                .displayName(Text.translatable("itemgroup.silentsilhouette.silent_silhouette_group"))
+                .icon(() -> new ItemStack(ModItems.SILHOUETTE_HEART))
+                .entries((displayContext, entries) -> {
+                    entries.add(ModItems.SILHOUETTE_HEART);
+                    entries.add(ModItems.PINK_GARNET);
+                    entries.add(ModItems.RAW_PINK_GARNET);
+                    entries.add(ModBlocks.PINK_GARNET_BLOCK);
+                    entries.add(ModBlocks.RAW_PINK_GARNET_BLOCK);
+                    entries.add(ModBlocks.PINK_GARNET_ORE);
+                    entries.add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
+                })
 
-                    .build()
+                .build()
     );
 
     public static void registerItemGroups() {
