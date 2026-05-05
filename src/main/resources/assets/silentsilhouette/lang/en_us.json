@@ -1,5 +1,8 @@
 {
   "item.silentsilhouette.pink_garnet": "Pink Garnet",
   "item.silentsilhouette.raw_pink_garnet": "Raw Pink Garnet",
-  "item.silentsilhouette.silhouette_heart": "The Heart of the Silent Silhouette"
+  "item.silentsilhouette.silhouette_heart": "The Heart of the Silent Silhouette",
+
+  "block.silentsilhouette.pink_garnet_block": "Block of Pink Garnet",
+  "block.silentsilhouette.raw_pink_garnet_block": "Block of Raw Pink Garnet"
 }
