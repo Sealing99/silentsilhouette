@@ -1,0 +1,38 @@
+{
+	"schemaVersion": 1,
+	"id": "silentsilhouette",
+	"version": "${version}",
+	"name": "The Silent Silhouette",
+	"description": "egs ar tasty",
+	"authors": [
+		"Sealing99",
+		"KindWinter"
+	],
+	"contact": {
+		"homepage": "https://youtube.com/@sealing999",
+		"sources": "https://github.com/FabricMC/fabric-example-mod"
+	},
+	"license": "MIT",
+	"icon": "assets/silentsilhouette/icon.png",
+	"environment": "*",
+	"entrypoints": {
+		"main": [
+			"net.sealing99.silentsilhouette.TheSilentSilhouette"
+		],
+		"fabric-datagen": [
+			"net.sealing99.silentsilhouette.TheSilentSilhouetteDataGenerator"
+		],
+		"client": [
+			"net.sealing99.silentsilhouette.TheSilentSilhouetteClient"
+		]
+	},
+	"mixins": [
+		"silentsilhouette.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=0.19.2",
+		"minecraft": "~1.21.1",
+		"java": ">=21",
+		"fabric-api": "*"
+	}
+}
