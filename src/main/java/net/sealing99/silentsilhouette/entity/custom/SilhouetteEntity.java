@@ -25,10 +25,10 @@ public class SilhouetteEntity extends AnimalEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new SilhouetteAttackGoal(this, 1.0d, false));
-        this.goalSelector.add(2, new FollowMobGoal(this, 1.0f, 10.0f, 20.0f));
-        this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 16.0f));
-        this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0d));
+        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 16.0f));
+        //this.goalSelector.add(2, new SilhouetteAttackGoal(this, 1.0d, false));
+        //this.goalSelector.add(3, new FollowMobGoal(this, 1.0f, 10.0f, 20.0f));
+        //this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0d));
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {

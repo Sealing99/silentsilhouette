@@ -55,7 +55,7 @@ public class SilhouetteModel<T extends SilhouetteEntity> extends SinglePartEntit
         headPitch = MathHelper.clamp(headPitch, -90.0f, 90.0f);
 
         this.head.yaw   = headYaw   * 0.017453292f;
-        this.head.pitch = headPitch * 0.017453292f;
+        this.head.pitch = headPitch * -0.017453292f;
     }
 
     @Override
