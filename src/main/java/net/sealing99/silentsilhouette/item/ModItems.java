@@ -13,6 +13,7 @@ import net.sealing99.silentsilhouette.entity.ModEntities;
 public class ModItems {
     public static final Item PINK_GARNET = registerItem("pink_garnet", new Item(new Item.Settings()));
     public static final Item RAW_PINK_GARNET = registerItem("raw_pink_garnet", new Item(new Item.Settings()));
+    public static final Item PINK_GARNET_SHARD = registerItem("pink_garnet_shard", new Item(new Item.Settings()));
 
     public static final Item SILHOUETTE_HEART = registerItem("silhouette_heart", new Item(new Item.Settings()));
 

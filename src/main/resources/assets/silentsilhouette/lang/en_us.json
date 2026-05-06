@@ -1,11 +1,12 @@
 {
   "item.silentsilhouette.pink_garnet": "Pink Garnet",
-  "item.silentsilhouette.raw_pink_garnet": "Raw Pink Garnet",
+  "item.silentsilhouette.raw_pink_garnet": "Raw Pink Garnet Bits",
+  "item.silentsilhouette.pink_garnet_shard": "Pink Garnet Shard",
   "item.silentsilhouette.silhouette_heart": "The Heart of the Silent Silhouette",
   "item.silentsilhouette.silhouette_spawn_egg": "Silent Silhouette Spawn Egg",
 
   "block.silentsilhouette.pink_garnet_block": "Block of Pink Garnet",
-  "block.silentsilhouette.raw_pink_garnet_block": "Block of Raw Pink Garnet",
+  "block.silentsilhouette.raw_pink_garnet_block": "Block of Raw Pink Garnet Bits",
 
   "block.silentsilhouette.pink_garnet_ore": "Pink Garnet Ore",
   "block.silentsilhouette.deepslate_pink_garnet_ore": "Deepslate Pink Garnet Ore",
