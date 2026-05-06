@@ -31,5 +31,6 @@ public class ModModelProvider extends FabricModelProvider {
         itemModelGenerator.register(ModItems.RAW_PINK_GARNET, Models.GENERATED);
         itemModelGenerator.register(ModItems.SILHOUETTE_HEART, Models.GENERATED);
         itemModelGenerator.register(ModItems.SILHOUETTE_SPAWN_EGG, new Model(Optional.of(Identifier.of("item/template_spawn_egg")), Optional.empty()));
+        itemModelGenerator.register(ModItems.PINK_GARNET_SHARD, Models.GENERATED);
     }
 }

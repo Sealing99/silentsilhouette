@@ -1,5 +1,7 @@
 package net.sealing99.silentsilhouette.world;
 
+import net.minecraft.world.gen.YOffset;
+import net.minecraft.world.gen.placementmodifier.HeightRangePlacementModifier;
 import net.sealing99.silentsilhouette.TheSilentSilhouette;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
@@ -15,8 +17,18 @@ import net.minecraft.world.gen.placementmodifier.PlacementModifier;
 import java.util.List;
 
 public class ModPlacedFeatures {
+    public static final RegistryKey<PlacedFeature> PINK_GARNET_ORE_SMALL_PLACED_KEY = registerKey("pink_garnet_ore_small_placed");
+    public static final RegistryKey<PlacedFeature> PINK_GARNET_ORE_BIG_PLACED_KEY = registerKey("pink_garnet_ore_big_placed");
+
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
+
+        register(context, PINK_GARNET_ORE_SMALL_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PINK_GARNET_ORE_SMALL_KEY),
+                ModOreoPlacement.modifiersWithCount(5,
+                        HeightRangePlacementModifier.trapezoid(YOffset.fixed(-60), YOffset.fixed(100))));
+        register(context, PINK_GARNET_ORE_BIG_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PINK_GARNET_ORE_BIG_KEY),
+                ModOreoPlacement.modifiersWithCount(5,
+                        HeightRangePlacementModifier.trapezoid(YOffset.fixed(-140), YOffset.fixed(80))));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {

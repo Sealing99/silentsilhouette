@@ -10,7 +10,7 @@ import net.sealing99.silentsilhouette.entity.custom.SilhouetteEntity;
 
 public class SilhouetteRenderer extends MobEntityRenderer<SilhouetteEntity, SilhouetteModel<SilhouetteEntity>> {
     public SilhouetteRenderer(EntityRendererFactory.Context context) {
-        super(context, new SilhouetteModel<>(context.getPart(SilhouetteModel.SILHOUETTE)), 0.75f);
+        super(context, new SilhouetteModel<>(context.getPart(SilhouetteModel.SILHOUETTE)), 0.5f);
     }
 
     @Override
