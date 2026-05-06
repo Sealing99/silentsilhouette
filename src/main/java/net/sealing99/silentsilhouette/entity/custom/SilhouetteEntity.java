@@ -25,8 +25,8 @@ public class SilhouetteEntity extends AnimalEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new SilhouetteAttackGoal(this, 2.0d, false));
-        this.goalSelector.add(2, new FollowMobGoal(this, 2.0f, 10.0f, 20.0f));
+        this.goalSelector.add(1, new SilhouetteAttackGoal(this, 1.0d, false));
+        this.goalSelector.add(2, new FollowMobGoal(this, 1.0f, 10.0f, 20.0f));
         this.goalSelector.add(3, new LookAtEntityGoal(this, PlayerEntity.class, 16.0f));
         this.goalSelector.add(4, new WanderAroundFarGoal(this, 1.0d));
     }
@@ -35,7 +35,7 @@ public class SilhouetteEntity extends AnimalEntity {
         return MobEntity.createMobAttributes()
                 .add(EntityAttributes.GENERIC_MAX_HEALTH, 200)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1)
-                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.5)
+                .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 14)
                 .add(EntityAttributes.GENERIC_FOLLOW_RANGE, 20);
     }
