@@ -9,8 +9,6 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.FeatureConfig;
 import net.sealing99.silentsilhouette.TheSilentSilhouette;
 
-import java.util.List;
-
 public class ModConfiguredFeatures {
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
 
