@@ -5,6 +5,8 @@
   "item.silentsilhouette.silhouette_heart": "The Heart of the Silent Silhouette",
   "item.silentsilhouette.silhouette_spawn_egg": "Silent Silhouette Spawn Egg",
 
+  "item.silentsilhouette.pink_garnet_crucifix": "Pink Garnet Crucifix",
+
   "block.silentsilhouette.pink_garnet_block": "Block of Pink Garnet",
   "block.silentsilhouette.raw_pink_garnet_block": "Block of Raw Pink Garnet Bits",
 
@@ -13,5 +15,9 @@
 
   "itemgroup.silentsilhouette.silent_silhouette_group": "The Silent Silhouette",
 
-  "entity.silentsilhouette.silhouette": "The Silent Silhouette"
+  "entity.silentsilhouette.silhouette": "The Silent Silhouette",
+
+  "item.silentsilhouette.seal_armor_trim_smithing_template": "Seal Smithing Template",
+  "trim_material.silentsilhouette.pink_garnet": "Pink Garnet Material",
+  "trim_pattern.silentsilhouette.seal": "Seal Armor Pattern"
 }

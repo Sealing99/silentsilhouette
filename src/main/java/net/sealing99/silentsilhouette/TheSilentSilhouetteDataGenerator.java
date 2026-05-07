@@ -6,6 +6,8 @@ import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
 import net.sealing99.silentsilhouette.block.ModBlocks;
 import net.sealing99.silentsilhouette.datagen.*;
+import net.sealing99.silentsilhouette.trim.ModTrimMaterials;
+import net.sealing99.silentsilhouette.trim.ModTrimPatterns;
 import net.sealing99.silentsilhouette.world.ModConfiguredFeatures;
 import net.sealing99.silentsilhouette.world.ModPlacedFeatures;
 
@@ -26,5 +28,8 @@ public class TheSilentSilhouetteDataGenerator implements DataGeneratorEntrypoint
 	public void buildRegistry(RegistryBuilder registryBuilder) {
 		registryBuilder.addRegistry(RegistryKeys.CONFIGURED_FEATURE, ModConfiguredFeatures::bootstrap);
 		registryBuilder.addRegistry(RegistryKeys.PLACED_FEATURE, ModPlacedFeatures::bootstrap);
+
+		registryBuilder.addRegistry(RegistryKeys.TRIM_MATERIAL, ModTrimMaterials::bootstrap);
+		registryBuilder.addRegistry(RegistryKeys.TRIM_PATTERN, ModTrimPatterns::bootstrap);
 	}
 }
