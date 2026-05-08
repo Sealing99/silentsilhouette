@@ -12,7 +12,7 @@ public class ModEntities {
     public static final EntityType<SilhouetteEntity> SILHOUETTE = Registry.register(
         Registries.ENTITY_TYPE,
         Identifier.of(TheSilentSilhouette.MOD_ID, "silhouette"),
-        EntityType.Builder.create(SilhouetteEntity::new, SpawnGroup.MONSTER)
+        EntityType.Builder.create(SilhouetteEntity::new, SpawnGroup.CREATURE)
                 .dimensions(0.6f, 2.0f).build()
     );
 

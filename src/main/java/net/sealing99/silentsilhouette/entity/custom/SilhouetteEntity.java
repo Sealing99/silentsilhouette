@@ -25,7 +25,7 @@ public class SilhouetteEntity extends PathAwareEntity {
     private boolean isCrucified = false;
     private int crucificationTimeout = 0;
 
-    public SilhouetteEntity(EntityType<? extends AnimalEntity> entityType, World world) {
+    public SilhouetteEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
     }
 
