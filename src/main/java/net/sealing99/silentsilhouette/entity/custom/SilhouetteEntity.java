@@ -5,12 +5,16 @@ import net.minecraft.entity.EntityType;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
+import net.minecraft.entity.data.DataTracker;
+import net.minecraft.entity.data.TrackedData;
+import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.world.ServerWorld;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -19,14 +23,23 @@ import net.sealing99.silentsilhouette.TheSilentSilhouette;
 import org.jetbrains.annotations.Nullable;
 
 public class SilhouetteEntity extends PathAwareEntity {
+    private static final TrackedData<Boolean> CRUCIFIED = DataTracker.registerData(SilhouetteEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
+    private static final TrackedData<Integer> CRUCIFICATION_TIMER = DataTracker.registerData(SilhouetteEntity.class, TrackedDataHandlerRegistry.INTEGER);
+
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
-    private boolean isCrucified = false;
-    private int crucificationTimeout = 0;
-
     public SilhouetteEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
+
+        TheSilentSilhouette.LOGGER.info("created entity");
+    }
+
+    @Override
+    protected void initDataTracker(DataTracker.Builder builder) {
+        super.initDataTracker(builder);
+        builder.add(CRUCIFIED, false);
+        builder.add(CRUCIFICATION_TIMER, 0);
     }
 
     @Override
@@ -36,6 +49,22 @@ public class SilhouetteEntity extends PathAwareEntity {
         this.goalSelector.add(2, new SilhouetteAttackGoal(this, 1.0d, false));
         //this.goalSelector.add(3, new FollowMobGoal(this, 1.0f, 10.0f, 20.0f));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0d));
+    }
+
+    public boolean isCrucified() {
+        return this.dataTracker.get(CRUCIFIED);
+    }
+
+    public void setCrucified(boolean crucified) {
+        this.dataTracker.set(CRUCIFIED, crucified);
+    }
+
+    public int getCrucificationTimeout() {
+        return this.dataTracker.get(CRUCIFICATION_TIMER);
+    }
+
+    public void setCrucificationTimeout(int timeout) {
+        this.dataTracker.set(CRUCIFICATION_TIMER, timeout);
     }
 
     public static DefaultAttributeContainer.Builder createAttributes() {
@@ -59,11 +88,11 @@ public class SilhouetteEntity extends PathAwareEntity {
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
         if (!this.getWorld().isClient()) {
-            if (this.crucificationTimeout == 0) {
-                this.isCrucified = !this.isCrucified;
-                TheSilentSilhouette.LOGGER.info("Silhouette crucified state toggled: " + this.isCrucified);
-                this.crucificationTimeout = 10;
-                TheSilentSilhouette.LOGGER.info("Silhouette crucification timeout set to: " + this.crucificationTimeout);
+            if (this.getCrucificationTimeout() == 0) {
+                this.setCrucified(!this.isCrucified());
+                TheSilentSilhouette.LOGGER.info("Silhouette crucified state toggled: " + this.isCrucified());
+                this.setCrucificationTimeout(10);
+                TheSilentSilhouette.LOGGER.info("Silhouette crucification timeout set to: " + this.getCrucificationTimeout());
             }
 
             return ActionResult.SUCCESS;
@@ -80,14 +109,30 @@ public class SilhouetteEntity extends PathAwareEntity {
             this.setupAnimationStates();
         }
 
-        if (this.age % 100 == 0 && this.getHealth() < this.getMaxHealth() && !this.isCrucified) {
+        if (this.age % 100 == 0 && this.getHealth() < this.getMaxHealth() && !this.isCrucified()) {
             this.setHealth(100.0f);
             TheSilentSilhouette.LOGGER.info("Silhouette healed to full health!");
+            TheSilentSilhouette.LOGGER.info("creaadsf: " + this.isCrucified() + " and crucification timeout: " + this.getCrucificationTimeout());
+
         }
 
-        if (this.crucificationTimeout > 0) {
-            this.crucificationTimeout = this.crucificationTimeout - 1;
+        if (this.getCrucificationTimeout() > 0) {
+            this.setCrucificationTimeout(this.getCrucificationTimeout() - 1);
         }
-        TheSilentSilhouette.LOGGER.info("Silhouette crucification timeout: " + this.crucificationTimeout);
+    }
+
+    @Override
+    public NbtCompound writeNbt(NbtCompound nbt) {
+        super.writeNbt(nbt);
+        nbt.putBoolean("Crucified", this.isCrucified());
+        nbt.putInt("CrucificationTimeout", this.getCrucificationTimeout());
+        return nbt;
+    }
+
+    @Override
+    public void readNbt(NbtCompound nbt) {
+        super.readNbt(nbt);
+        this.setCrucified(nbt.getBoolean("Crucified"));
+        this.setCrucificationTimeout(nbt.getInt("CrucificationTimeout"));
     }
 }
