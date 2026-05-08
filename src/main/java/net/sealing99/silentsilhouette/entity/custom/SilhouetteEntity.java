@@ -11,12 +11,17 @@ import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.util.ActionResult;
+import net.minecraft.util.Hand;
 import net.minecraft.world.World;
+import net.sealing99.silentsilhouette.TheSilentSilhouette;
 import org.jetbrains.annotations.Nullable;
 
 public class SilhouetteEntity extends AnimalEntity {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
+
+    private boolean isCrucified = false;
 
     public SilhouetteEntity(EntityType<? extends AnimalEntity> entityType, World world) {
         super(entityType, world);
@@ -33,7 +38,7 @@ public class SilhouetteEntity extends AnimalEntity {
 
     public static DefaultAttributeContainer.Builder createAttributes() {
         return MobEntity.createMobAttributes()
-                .add(EntityAttributes.GENERIC_MAX_HEALTH, 200)
+                .add(EntityAttributes.GENERIC_MAX_HEALTH, 100)
                 .add(EntityAttributes.GENERIC_KNOCKBACK_RESISTANCE, 1)
                 .add(EntityAttributes.GENERIC_MOVEMENT_SPEED, 0.25)
                 .add(EntityAttributes.GENERIC_ATTACK_DAMAGE, 14)
@@ -50,11 +55,28 @@ public class SilhouetteEntity extends AnimalEntity {
     }
 
     @Override
+    public ActionResult interactMob(PlayerEntity player, Hand hand) {
+        if (!this.getWorld().isClient()) {
+            this.isCrucified = !this.isCrucified;
+            TheSilentSilhouette.LOGGER.info("Silhouette crucified state toggled: " + this.isCrucified);
+
+            return ActionResult.SUCCESS;
+        }
+        return ActionResult.PASS;
+    }
+
+
+    @Override
     public void tick() {
         super.tick();
 
         if (this.getWorld().isClient()) {
             this.setupAnimationStates();
+        }
+
+        if (this.age % 100 == 0 && this.getHealth() < this.getMaxHealth() && !this.isCrucified()) {
+            this.setHealth(100.0f);
+            TheSilentSilhouette.LOGGER.info("Silhouette healed to full health!");
         }
     }
 
@@ -66,5 +88,13 @@ public class SilhouetteEntity extends AnimalEntity {
     @Override
     public @Nullable PassiveEntity createChild(ServerWorld world, PassiveEntity entity) {
         return null;
+    }
+
+    public boolean isCrucified() {
+        return isCrucified;
+    }
+
+    public void setCrucified(boolean crucified) {
+        isCrucified = crucified;
     }
 }
