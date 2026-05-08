@@ -78,6 +78,13 @@ public class SilhouetteEntity extends PathAwareEntity {
 
         if (this.getWorld().isClient()) {
             this.setupAnimationStates();
+        }
+
+        if (this.age % 100 == 0 && this.getHealth() < this.getMaxHealth() && !this.isCrucified()) {
+            this.setHealth(100.0f);
+            TheSilentSilhouette.LOGGER.info("Silhouette healed to full health!");
+        }
+    }
 
             if (this.age % 2 == 0 && this.getHealth() < this.getMaxHealth() && !this.isCrucified) {
                 this.setHealth(100.0f);
