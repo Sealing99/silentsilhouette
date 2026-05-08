@@ -6,6 +6,7 @@ import net.fabricmc.fabric.api.datagen.v1.provider.FabricTagProvider;
 import net.minecraft.registry.RegistryWrapper;
 import net.minecraft.registry.tag.ItemTags;
 import net.sealing99.silentsilhouette.item.ModItems;
+import net.sealing99.silentsilhouette.util.ModTags;
 
 
 import java.util.concurrent.CompletableFuture;
@@ -19,5 +20,7 @@ public class ModItemTagProvider extends FabricTagProvider.ItemTagProvider {
     protected void configure(RegistryWrapper.WrapperLookup lookup) {
         getOrCreateTagBuilder(ItemTags.TRIM_MATERIALS).add(ModItems.PINK_GARNET);
         getOrCreateTagBuilder(ItemTags.TRIM_TEMPLATES).add(ModItems.SEAL_SMITHING_TEMPLATE);
+
+        getOrCreateTagBuilder(ModTags.Items.TAG_KEY).add(ModItems.SEAL_SMITHING_TEMPLATE);
     }
 }
