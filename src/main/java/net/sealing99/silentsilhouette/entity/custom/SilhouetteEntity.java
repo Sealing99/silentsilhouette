@@ -80,21 +80,14 @@ public class SilhouetteEntity extends PathAwareEntity {
             this.setupAnimationStates();
         }
 
-        if (this.age % 100 == 0 && this.getHealth() < this.getMaxHealth() && !this.isCrucified()) {
+        if (this.age % 100 == 0 && this.getHealth() < this.getMaxHealth() && !this.isCrucified) {
             this.setHealth(100.0f);
             TheSilentSilhouette.LOGGER.info("Silhouette healed to full health!");
         }
-    }
 
-            if (this.age % 2 == 0 && this.getHealth() < this.getMaxHealth() && !this.isCrucified) {
-                this.setHealth(100.0f);
-                TheSilentSilhouette.LOGGER.info("Silhouette healed to full health!");
-            }
-
-            if (this.crucificationTimeout > 0) {
-                this.crucificationTimeout = this.crucificationTimeout - 1;
-            }
-            TheSilentSilhouette.LOGGER.info("Silhouette crucification timeout: " + this.crucificationTimeout);
+        if (this.crucificationTimeout > 0) {
+            this.crucificationTimeout = this.crucificationTimeout - 1;
         }
+        TheSilentSilhouette.LOGGER.info("Silhouette crucification timeout: " + this.crucificationTimeout);
     }
 }
