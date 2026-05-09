@@ -14,12 +14,16 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
+import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.world.ServerWorld;
+import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.sealing99.silentsilhouette.TheSilentSilhouette;
+import net.sealing99.silentsilhouette.item.ModItems;
 import org.jetbrains.annotations.Nullable;
 
 public class SilhouetteEntity extends PathAwareEntity {
@@ -29,8 +33,12 @@ public class SilhouetteEntity extends PathAwareEntity {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
+    private final MinecraftServer server;
+
     public SilhouetteEntity(EntityType<? extends PathAwareEntity> entityType, World world) {
         super(entityType, world);
+
+        this.server = world.getServer();
 
         TheSilentSilhouette.LOGGER.info("created entity");
     }
@@ -87,13 +95,18 @@ public class SilhouetteEntity extends PathAwareEntity {
 
     @Override
     public ActionResult interactMob(PlayerEntity player, Hand hand) {
-        if (!this.getWorld().isClient()) {
+        if (!this.getWorld().isClient() && player.getMainHandStack().isOf(ModItems.PINK_GARNET_CRUCIFIX)) {
             if (this.getCrucificationTimeout() == 0) {
                 this.setCrucified(!this.isCrucified());
                 TheSilentSilhouette.LOGGER.info("Silhouette crucified state toggled: " + this.isCrucified());
                 this.setCrucificationTimeout(10);
                 TheSilentSilhouette.LOGGER.info("Silhouette crucification timeout set to: " + this.getCrucificationTimeout());
             }
+
+            this.server.getPlayerManager().broadcast(
+                    Text.literal("<The Silent Silhouette> greetings :) , i am now " + this.isCrucified()),
+                    false // set to true to show in the action bar instead of chat
+            );
 
             return ActionResult.SUCCESS;
         }

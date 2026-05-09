@@ -29,6 +29,7 @@ public class ModItemGroups {
                         entries.add(ModItems.SILHOUETTE_SPAWN_EGG);
                         entries.add(ModItems.SEAL_SMITHING_TEMPLATE);
                         entries.add(ModItems.PINK_GARNET_CRUCIFIX);
+                        entries.add(ModItems.URANIUM_SANDWICH);
                     })
 
                     .build()

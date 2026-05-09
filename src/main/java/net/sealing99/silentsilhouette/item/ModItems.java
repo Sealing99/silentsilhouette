@@ -27,6 +27,8 @@ public class ModItems {
 
     public static final Item PINK_GARNET_CRUCIFIX = registerItem("pink_garnet_crucifix", new Item(new Item.Settings()));
 
+    public static final Item URANIUM_SANDWICH = registerItem("uranium_sandwich", new Item(new Item.Settings().food(ModFoodComponents.URANIUM_SANDWICH)));
+
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(TheSilentSilhouette.MOD_ID, name), item);
     }
