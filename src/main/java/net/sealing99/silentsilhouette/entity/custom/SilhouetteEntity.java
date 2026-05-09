@@ -101,12 +101,12 @@ public class SilhouetteEntity extends PathAwareEntity {
                 TheSilentSilhouette.LOGGER.info("Silhouette crucified state toggled: " + this.isCrucified());
                 this.setCrucificationTimeout(10);
                 TheSilentSilhouette.LOGGER.info("Silhouette crucification timeout set to: " + this.getCrucificationTimeout());
-            }
 
-            this.server.getPlayerManager().broadcast(
-                    Text.literal("<The Silent Silhouette> greetings :) , i am now " + this.isCrucified()),
-                    false // set to true to show in the action bar instead of chat
-            );
+                this.server.getPlayerManager().broadcast(
+                        Text.literal("<The Silent Silhouette> greetings :) , i am now " + this.isCrucified()),
+                        false // set to true to show in the action bar instead of chat
+                );
+            }
 
             return ActionResult.SUCCESS;
         }
