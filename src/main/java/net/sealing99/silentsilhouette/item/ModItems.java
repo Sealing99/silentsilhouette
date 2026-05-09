@@ -25,7 +25,7 @@ public class ModItems {
 
     public static final Item SEAL_SMITHING_TEMPLATE = registerItem("seal_armor_trim_smithing_template", SmithingTemplateItem.of(Identifier.of(TheSilentSilhouette.MOD_ID, "seal"), FeatureFlags.VANILLA));
 
-    public static final Item PINK_GARNET_CRUCIFIX = registerItem("pink_garnet_crucifix", new Item(new Item.Settings()));
+    public static final Item PINK_GARNET_CRUCIFIX = registerItem("pink_garnet_crucifix", new Item(new Item.Settings().maxCount(1)));
 
     public static final Item URANIUM_SANDWICH = registerItem("uranium_sandwich", new Item(new Item.Settings().food(ModFoodComponents.URANIUM_SANDWICH)));
 
