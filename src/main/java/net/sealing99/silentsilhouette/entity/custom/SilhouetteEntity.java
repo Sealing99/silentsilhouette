@@ -8,6 +8,8 @@ import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.passive.AnimalEntity;
@@ -39,6 +41,14 @@ public class SilhouetteEntity extends PathAwareEntity {
         super(entityType, world);
 
         this.server = world.getServer();
+
+        this.addStatusEffect(new StatusEffectInstance(
+                StatusEffects.GLOWING,
+                StatusEffectInstance.INFINITE,
+                255,
+                false,
+                true
+        ));
 
         TheSilentSilhouette.LOGGER.info("created entity");
     }
