@@ -2,6 +2,7 @@ package net.sealing99.silentsilhouette.entity.custom;
 
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -12,21 +13,16 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
-import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.PassiveEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
-import net.minecraft.server.world.ServerWorld;
+import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.sealing99.silentsilhouette.TheSilentSilhouette;
 import net.sealing99.silentsilhouette.item.ModItems;
-import org.jetbrains.annotations.Nullable;
 
 public class SilhouetteEntity extends PathAwareEntity {
     private static final TrackedData<Boolean> CRUCIFIED = DataTracker.registerData(SilhouetteEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -67,6 +63,8 @@ public class SilhouetteEntity extends PathAwareEntity {
         this.goalSelector.add(2, new SilhouetteAttackGoal(this, 1.0d, false));
         //this.goalSelector.add(3, new FollowMobGoal(this, 1.0f, 10.0f, 20.0f));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0d));
+
+        this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));;
     }
 
     public boolean isCrucified() {
@@ -157,5 +155,48 @@ public class SilhouetteEntity extends PathAwareEntity {
         super.readNbt(nbt);
         this.setCrucified(nbt.getBoolean("Crucified"));
         this.setCrucificationTimeout(nbt.getInt("CrucificationTimeout"));
+    }
+}
+
+class SilhouetteAttackGoal extends MeleeAttackGoal {
+    private final SilhouetteEntity entity;
+    private int ticks;
+
+    public SilhouetteAttackGoal(SilhouetteEntity silhouette, double speed, boolean pauseWhenIdle) {
+        super(silhouette, speed, pauseWhenIdle);
+        this.entity = silhouette;
+    }
+
+    @Override
+    public void start() {
+        super.start();
+        this.ticks = 0;
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+        this.entity.setAttacking(false);
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+        this.ticks++;
+        if (this.ticks >= 5 && this.getCooldown() < this.getMaxCooldown() / 2) {
+            this.entity.setAttacking(true);
+        } else {
+            this.entity.setAttacking(false);
+        }
+    }
+
+    @Override
+    protected void attack(LivingEntity target) {
+        if (this.canAttack(target) && this.entity.isAttacking()) {
+            // Check custom attack timer here if needed
+            this.entity.tryAttack(target);
+            // Play attack sound
+            this.entity.playSound(SoundEvents.ENTITY_PLAYER_ATTACK_STRONG, 1.0F, 1.0F);
+        }
     }
 }
