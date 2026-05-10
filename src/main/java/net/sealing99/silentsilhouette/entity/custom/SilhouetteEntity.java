@@ -38,15 +38,31 @@ public class SilhouetteEntity extends PathAwareEntity {
 
         this.server = world.getServer();
 
+
+
         this.addStatusEffect(new StatusEffectInstance(
                 StatusEffects.GLOWING,
                 StatusEffectInstance.INFINITE,
                 255,
                 false,
-                true
+                false
         ));
 
         TheSilentSilhouette.LOGGER.info("created entity");
+    }
+
+    @Override
+    protected void onStatusEffectRemoved(StatusEffectInstance effect) {
+        super.onStatusEffectRemoved(effect);
+        if (effect.getEffectType() == StatusEffects.GLOWING) {
+            this.addStatusEffect(new StatusEffectInstance(
+                    StatusEffects.GLOWING,
+                    StatusEffectInstance.INFINITE,
+                    255,
+                    false,
+                    false
+            ));
+        }
     }
 
     @Override
@@ -59,9 +75,8 @@ public class SilhouetteEntity extends PathAwareEntity {
     @Override
     protected void initGoals() {
         this.goalSelector.add(0, new SwimGoal(this));
-        this.goalSelector.add(1, new LookAtEntityGoal(this, PlayerEntity.class, 16.0f));
-        this.goalSelector.add(2, new SilhouetteAttackGoal(this, 1.0d, false));
-        //this.goalSelector.add(3, new FollowMobGoal(this, 1.0f, 10.0f, 20.0f));
+        this.goalSelector.add(1, new SilhouetteAttackGoal(this, 1.0d, false));
+        this.goalSelector.add(2, new LookAtEntityGoal(this, PlayerEntity.class, 16.0f));
         this.goalSelector.add(3, new WanderAroundFarGoal(this, 1.0d));
 
         this.targetSelector.add(1, new ActiveTargetGoal<>(this, PlayerEntity.class, true));;
