@@ -3,7 +3,8 @@
 	"package": "net.sealing99.silentsilhouette.mixin",
 	"compatibilityLevel": "JAVA_21",
 	"mixins": [
-		"ExampleMixin"
+		"ExampleMixin",
+        "TextRendererMixin"
 	],
 	"injectors": {
 		"defaultRequire": 1
