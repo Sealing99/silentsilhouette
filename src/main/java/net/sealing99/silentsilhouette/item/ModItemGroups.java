@@ -18,7 +18,6 @@ public class ModItemGroups {
                     .displayName(Text.translatable("itemgroup.silentsilhouette.silent_silhouette_group"))
                     .icon(() -> new ItemStack(ModItems.SILHOUETTE_HEART))
                     .entries((displayContext, entries) -> {
-                        entries.add(ModItems.SILHOUETTE_HEART);
                         entries.add(ModItems.PINK_GARNET);
                         entries.add(ModItems.RAW_PINK_GARNET);
                         entries.add(ModItems.PINK_GARNET_SHARD);
@@ -26,10 +25,19 @@ public class ModItemGroups {
                         entries.add(ModBlocks.RAW_PINK_GARNET_BLOCK);
                         entries.add(ModBlocks.PINK_GARNET_ORE);
                         entries.add(ModBlocks.DEEPSLATE_PINK_GARNET_ORE);
+
                         entries.add(ModItems.SILHOUETTE_SPAWN_EGG);
-                        entries.add(ModItems.SEAL_SMITHING_TEMPLATE);
+                        entries.add(ModItems.SILHOUETTE_HEART);
                         entries.add(ModItems.PINK_GARNET_CRUCIFIX);
+
+                        entries.add(ModItems.SEAL_SMITHING_TEMPLATE);
                         entries.add(ModItems.URANIUM_SANDWICH);
+
+                        entries.add(ModItems.PINK_GARNET_SWORD);
+                        entries.add(ModItems.PINK_GARNET_PICKAXE);
+                        entries.add(ModItems.PINK_GARNET_AXE);
+                        entries.add(ModItems.PINK_GARNET_SHOVEL);
+                        entries.add(ModItems.PINK_GARNET_HOE);
                     })
 
                     .build()

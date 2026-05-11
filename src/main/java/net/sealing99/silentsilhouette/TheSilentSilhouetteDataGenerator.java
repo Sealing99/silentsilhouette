@@ -2,9 +2,9 @@ package net.sealing99.silentsilhouette;
 
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
+import net.minecraft.loot.context.LootContextTypes;
 import net.minecraft.registry.RegistryBuilder;
 import net.minecraft.registry.RegistryKeys;
-import net.sealing99.silentsilhouette.block.ModBlocks;
 import net.sealing99.silentsilhouette.datagen.*;
 import net.sealing99.silentsilhouette.trim.ModTrimMaterials;
 import net.sealing99.silentsilhouette.trim.ModTrimPatterns;
@@ -22,6 +22,7 @@ public class TheSilentSilhouetteDataGenerator implements DataGeneratorEntrypoint
 		pack.addProvider(ModModelProvider::new);
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModRegistryDataGenerator::new);
+		pack.addProvider((output, registryLookup) -> new ModEntityLootTableProvider(output, registryLookup, LootContextTypes.ENTITY));
 	}
 
 	@Override

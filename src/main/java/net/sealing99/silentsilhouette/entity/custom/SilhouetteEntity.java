@@ -3,12 +3,15 @@ package net.sealing99.silentsilhouette.entity.custom;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
 import net.minecraft.entity.data.DataTracker;
 import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
+import net.minecraft.entity.effect.StatusEffectInstance;
+import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
@@ -49,20 +52,6 @@ public class SilhouetteEntity extends PathAwareEntity {
         ));
 
         TheSilentSilhouette.LOGGER.info("created entity");
-    }
-
-    @Override
-    protected void onStatusEffectRemoved(StatusEffectInstance effect) {
-        super.onStatusEffectRemoved(effect);
-        if (effect.getEffectType() == StatusEffects.GLOWING) {
-            this.addStatusEffect(new StatusEffectInstance(
-                    StatusEffects.GLOWING,
-                    StatusEffectInstance.INFINITE,
-                    255,
-                    false,
-                    false
-            ));
-        }
     }
 
     @Override
