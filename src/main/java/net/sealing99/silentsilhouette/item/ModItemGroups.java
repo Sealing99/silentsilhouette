@@ -12,7 +12,7 @@ import net.sealing99.silentsilhouette.block.ModBlocks;
 
 public class ModItemGroups {
     public static final ItemGroup SILENT_SILHOUETTE_GROUP = Registry.register(
-        Registries.ITEM_GROUP,
+            Registries.ITEM_GROUP,
             Identifier.of(TheSilentSilhouette.MOD_ID, "silent_silhouette_group"),
             FabricItemGroup.builder()
                     .displayName(Text.translatable("itemgroup.silentsilhouette.silent_silhouette_group"))

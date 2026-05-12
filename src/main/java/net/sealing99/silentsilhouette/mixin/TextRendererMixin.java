@@ -15,7 +15,7 @@ public class TextRendererMixin {
             argsOnly = true
     )
     private String modifyText(String text) {
-
-        return ModNumberBaseUtils.convertText(text);
+        return text;
+        //return ModNumberBaseUtils.convertText(text);
     }
 }
