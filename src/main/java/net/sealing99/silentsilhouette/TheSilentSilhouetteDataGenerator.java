@@ -23,6 +23,7 @@ public class TheSilentSilhouetteDataGenerator implements DataGeneratorEntrypoint
 		pack.addProvider(ModRecipeProvider::new);
 		pack.addProvider(ModRegistryDataGenerator::new);
 		pack.addProvider((output, registryLookup) -> new ModEntityLootTableProvider(output, registryLookup, LootContextTypes.ENTITY));
+		pack.addProvider(ModJukeboxSongDataProvider::new);
 	}
 
 	@Override

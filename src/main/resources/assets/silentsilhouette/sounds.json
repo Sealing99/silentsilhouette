@@ -1,0 +1,31 @@
+{
+  "ambient_silhouette": {
+    "subtitle": "sounds.silentsilhouette.ambient_silhouette",
+    "sounds": [
+      "silentsilhouette:ambient_1",
+      "silentsilhouette:ambient_2",
+      "silentsilhouette:ambient_3",
+      "silentsilhouette:ambient_4",
+      "silentsilhouette:ambient_5",
+      "silentsilhouette:ambient_6",
+      "silentsilhouette:ambient_7",
+      "silentsilhouette:ambient_8",
+      "silentsilhouette:ambient_9",
+      "silentsilhouette:ambient_10",
+      "silentsilhouette:ambient_11",
+      "silentsilhouette:ambient_12",
+      "silentsilhouette:ambient_13",
+      "silentsilhouette:ambient_14",
+      "silentsilhouette:ambient_15"
+    ]
+  },
+  "minecraft": {
+    "subtitle": "sounds.silentsilhouette.minecraft",
+    "sounds": [
+      {
+        "name": "silentsilhouette:minecraft",
+        "stream": true
+      }
+    ]
+  }
+}

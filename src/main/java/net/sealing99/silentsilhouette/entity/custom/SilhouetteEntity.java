@@ -3,7 +3,6 @@ package net.sealing99.silentsilhouette.entity.custom;
 import net.minecraft.entity.AnimationState;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LivingEntity;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.attribute.DefaultAttributeContainer;
 import net.minecraft.entity.attribute.EntityAttributes;
@@ -12,13 +11,12 @@ import net.minecraft.entity.data.TrackedData;
 import net.minecraft.entity.data.TrackedDataHandlerRegistry;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.mob.MobEntity;
 import net.minecraft.entity.mob.PathAwareEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.server.MinecraftServer;
+import net.minecraft.sound.SoundEvent;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.text.Text;
 import net.minecraft.util.ActionResult;
@@ -26,6 +24,8 @@ import net.minecraft.util.Hand;
 import net.minecraft.world.World;
 import net.sealing99.silentsilhouette.TheSilentSilhouette;
 import net.sealing99.silentsilhouette.item.ModItems;
+import net.sealing99.silentsilhouette.sound.ModSounds;
+import org.jetbrains.annotations.Nullable;
 
 public class SilhouetteEntity extends PathAwareEntity {
     private static final TrackedData<Boolean> CRUCIFIED = DataTracker.registerData(SilhouetteEntity.class, TrackedDataHandlerRegistry.BOOLEAN);
@@ -43,13 +43,13 @@ public class SilhouetteEntity extends PathAwareEntity {
 
 
 
-        this.addStatusEffect(new StatusEffectInstance(
-                StatusEffects.GLOWING,
-                StatusEffectInstance.INFINITE,
-                255,
-                false,
-                false
-        ));
+        //this.addStatusEffect(new StatusEffectInstance(
+        //        StatusEffects.GLOWING,
+        //        StatusEffectInstance.INFINITE,
+        //        255,
+        //        false,
+        //        false
+        //));
 
         TheSilentSilhouette.LOGGER.info("created entity");
     }
@@ -159,6 +159,16 @@ public class SilhouetteEntity extends PathAwareEntity {
         super.readNbt(nbt);
         this.setCrucified(nbt.getBoolean("Crucified"));
         this.setCrucificationTimeout(nbt.getInt("CrucificationTimeout"));
+    }
+
+    @Override
+    protected @Nullable SoundEvent getAmbientSound() {
+        return ModSounds.AMBIENT_SILHOUETTE;
+    }
+
+    @Override
+    public int getMinAmbientSoundDelay() {
+        return 700;
     }
 }
 

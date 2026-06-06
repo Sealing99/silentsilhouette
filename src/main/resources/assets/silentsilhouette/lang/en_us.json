@@ -27,5 +27,10 @@
 
   "item.silentsilhouette.seal_armor_trim_smithing_template": "Seal Smithing Template",
   "trim_material.silentsilhouette.pink_garnet": "Pink Garnet Material",
-  "trim_pattern.silentsilhouette.seal": "Seal Armor Trim"
+  "trim_pattern.silentsilhouette.seal": "Seal Armor Trim",
+
+  "sounds.silentsilhouette.ambient_silhouette": "Silhouette",
+  "sounds.silentsilhouette.minecraft": "Music Disc Plays",
+  "item.silentsilhouette.minecraft_music_disc": "Music Disc",
+  "item.silentsilhouette.minecraft_music_disc.desc": "Sealing99 - Minecraft (CC BY)"
 }

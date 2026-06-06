@@ -9,6 +9,7 @@ import net.minecraft.resource.featuretoggle.FeatureFlags;
 import net.minecraft.util.Identifier;
 import net.sealing99.silentsilhouette.TheSilentSilhouette;
 import net.sealing99.silentsilhouette.entity.ModEntities;
+import net.sealing99.silentsilhouette.sound.ModSounds;
 import net.sealing99.silentsilhouette.trim.ModTrimPatterns;
 
 public class ModItems {
@@ -18,7 +19,7 @@ public class ModItems {
 
     public static final Item SILHOUETTE_HEART = registerItem("silhouette_heart", new Item(new Item.Settings()));
 
-    public static final Item SILHOUETTE_SPAWN_EGG = registerItem("silhouette_spawn_egg", new SpawnEggItem(ModEntities.SILHOUETTE, 0x9dc783, 0xbfaf5f, new Item.Settings()));
+    public static final Item SILHOUETTE_SPAWN_EGG = registerItem("silhouette_spawn_egg", new SpawnEggItem(ModEntities.SILHOUETTE, 0x000000, 0x000000, new Item.Settings()));
 
     public static final Item SEAL_SMITHING_TEMPLATE = registerItem("seal_armor_trim_smithing_template", SmithingTemplateItem.of(Identifier.of(TheSilentSilhouette.MOD_ID, "seal"), FeatureFlags.VANILLA));
 
@@ -41,6 +42,9 @@ public class ModItems {
     public static final Item PINK_GARNET_HOE = registerItem("pink_garnet_hoe",
             new HoeItem(ModToolMaterials.PINK_GARNET, new Item.Settings()
                     .attributeModifiers(HoeItem.createAttributeModifiers(ModToolMaterials.PINK_GARNET, 0, -3f))));
+
+    public static final Item MINECRAFT_MUSIC_DISC = registerItem("minecraft_music_disc",
+            new Item(new Item.Settings().jukeboxPlayable(ModSounds.MINECRAFT_KEY).maxCount(1)));
 
     private static Item registerItem(String name, Item item) {
         return Registry.register(Registries.ITEM, Identifier.of(TheSilentSilhouette.MOD_ID, name), item);
