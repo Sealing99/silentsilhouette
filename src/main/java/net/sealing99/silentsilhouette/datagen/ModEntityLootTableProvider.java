@@ -4,6 +4,7 @@ import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.SimpleFabricLootTableProvider;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.LootTable;
+import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.context.LootContextType;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
@@ -24,11 +25,18 @@ public class ModEntityLootTableProvider extends SimpleFabricLootTableProvider {
     public void accept(BiConsumer<RegistryKey<LootTable>, LootTable.Builder> exporter) {
         exporter.accept(
             ModEntities.SILHOUETTE.getLootTableId(),
-            LootTable.builder().pool(
-                LootPool.builder()
-                        .rolls(ConstantLootNumberProvider.create(1))
-                        .with(ItemEntry.builder(ModItems.SILHOUETTE_HEART))
-            )
+            LootTable.builder()
+                    .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1))
+                                .with(ItemEntry.builder(ModItems.SILHOUETTE_HEART))
+                    )
+                    .pool(
+                        LootPool.builder()
+                                .rolls(ConstantLootNumberProvider.create(1))
+                                .conditionally(RandomChanceLootCondition.builder(0.01f))
+                                .with(ItemEntry.builder(ModItems.URANIUM_SANDWICH))
+                    )
         );
     }
 }
